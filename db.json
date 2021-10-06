@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "name": "eff",
+      "phone": "12345678",
+      "id": 4
+    },
+    {
+      "name": "batman",
+      "phone": "12345678",
+      "id": 6
+    },
+    {
+      "name": "Petya Ivanov",
+      "phone": "13243857",
+      "id": 7
+    }
+  ]
+}

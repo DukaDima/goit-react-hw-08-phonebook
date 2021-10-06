@@ -1,0 +1,30 @@
+.AddContact__form {
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 24px;
+  padding: 12px 24px;
+  background-color: rgb(150, 225, 248);
+}
+.AddContact__button {
+  width: 100px;
+  height: 30px;
+  padding: 4px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: rgb(52, 155, 4);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(180, 132, 132, 0.5);
+}
+.AddContact__input {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.AddContact__title {
+  margin: 0;
+  text-transform: uppercase;
+}

@@ -1,0 +1,18 @@
+.ContactList__text {
+  padding: 4px 12px;
+  background-color: beige;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(180, 132, 132, 0.5);
+}
+.ContactsList__Button {
+  padding: 4px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: tomato;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(180, 132, 132, 0.5);
+}
