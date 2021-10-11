@@ -9,13 +9,13 @@ import PropTypes from 'prop-types';
 const ContactsList = ({ contacts, onDeleteContact }) => {
   return (
     <ul className={s.ContactList}>
-      {contacts.map(({ id, name, phone }) => {
+      {contacts.map(({ id, name, number }) => {
         return (
           <li key={id} className={s.ContactList__item}>
             <ContactItem
               id={id}
               name={name}
-              phone={phone}
+              number={number}
               onDeleteContact={onDeleteContact}
             />
           </li>

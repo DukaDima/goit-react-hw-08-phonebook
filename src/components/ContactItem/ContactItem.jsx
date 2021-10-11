@@ -2,11 +2,11 @@ import React from 'react';
 import s from './ContactItem.module.css';
 import PropTypes from 'prop-types';
 
-const ContactItem = ({ id, name, phone, onDeleteContact }) => {
+const ContactItem = ({ id, name, number, onDeleteContact }) => {
   return (
     <>
       <p className={s.ContactList__text}>{name}</p>
-      <p className={s.ContactList__text}>{phone}</p>
+      <p className={s.ContactList__text}>{number}</p>
       <button
         type="button"
         className={s.ContactsList__Button}

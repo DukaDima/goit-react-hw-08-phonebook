@@ -1,43 +1,33 @@
-import React, { Component } from 'react';
-import ContactsList from './components/ContactsList/ContactsList';
-import AddContacts from './components/AddContacts/AddContacts';
-import Filter from './components/Filter/Filter';
-import Title from './components/Title/Title';
-import { connect } from 'react-redux';
-import operations from './redux/operations';
-import selectors from './redux/selectors';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from './redux/auth/auth-operations';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchContacts();
-  }
-  render() {
-    return (
-      <>
-        <h1>Телефонная книга</h1>
-        {this.props.isLoadingContacts && <h2>Загружаем...</h2>}
-        <Title title={'Добавить контакт'} />
-        <AddContacts />
-        <Filter />
-        <Title title={'Список контактов'} />
-        <ContactsList />
-      </>
-    );
-  }
+import AppBar from './components/AppBar/AppBar';
+import Container from './components/Container/Container';
+import { Switch, Route } from 'react-router-dom';
+
+import HomeView from './views/HomeView/HomeView';
+import RegisterView from './views/RegisterView/RegisterView';
+import LoginView from './views/LoginView/LoginView';
+import ContactsView from './views/ContactsView/ContactsView';
+
+export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+  return (
+    <div>
+      <Container>
+        <AppBar />
+      </Container>
+
+      <Switch>
+        <Route exact path="/" component={HomeView} />
+        <Route path="/register" component={RegisterView} />
+        <Route path="/login" component={LoginView} />
+        <Route path="/contacts" component={ContactsView} />
+      </Switch>
+    </div>
+  );
 }
-
-const mapStateToProps = state => ({
-  isLoadingContacts: selectors.getLoading(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(operations.fetchContacts()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-App.propTypes = {
-  contacts: PropTypes.array,
-  filter: PropTypes.string,
-};
