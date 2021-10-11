@@ -19,14 +19,5 @@ export default {
   getLoading,
   getFilter,
   getVisibleContacts,
+  getAllContacts,
 };
-
-// const getVisibleContacts = state => {
-//   const contacts = getAllContacts(state);
-//   const filter = getFilter(state);
-//   const normalizedFilter = filter.toLowerCase();
-
-//   return contacts.filter(({ name }) =>
-//     name.toLowerCase().includes(normalizedFilter),
-//   );
-// };

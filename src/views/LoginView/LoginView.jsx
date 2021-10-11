@@ -3,17 +3,21 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth/auth-operations';
 import s from './LoginView.module.css';
 import PropTypes from 'prop-types';
+import { Form, Button } from 'react-bootstrap';
 
 function LoginView({ onSubmit }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [checked, setChecked] = useState(false);
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
         return setEmail(value);
       case 'password':
         return setPassword(value);
+      case 'nameCheck':
+        return setChecked(!checked);
       default:
         return;
     }
@@ -26,31 +30,46 @@ function LoginView({ onSubmit }) {
   };
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <h1>Страница логина</h1>
-      <form onSubmit={handleSubmit} autoComplete="off" className={s.form}>
-        <label className={s.label}>
-          Почта
-          <input
+
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
             type="email"
+            placeholder="Enter email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
-        <label className={s.label}>
-          Пароль
-          <input
-            type="text"
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
-        <button type="submit" className={s.label}>
-          Войти
-        </button>
-      </form>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            label="Согласен"
+            name="nameCheck"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit" disabled={!checked}>
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }

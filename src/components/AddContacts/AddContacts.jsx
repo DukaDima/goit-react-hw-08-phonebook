@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import operations from '../../redux/operations';
 import s from './AddContacts.module.css';
 import PropTypes from 'prop-types';
+import selectors from '../../redux/selectors';
 
-const AddContacts = ({ onSubmit }) => {
+const AddContacts = ({ onSubmit, contacts }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -16,8 +17,13 @@ const AddContacts = ({ onSubmit }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-
-    onSubmit(name, phone);
+    console.log(contacts);
+    let condition = contacts.find(contact => {
+      console.log(contact);
+      return contact.name.toLowerCase() === name.toLowerCase();
+    });
+    console.log(condition);
+    !condition ? onSubmit(name, phone) : alert('Такой контакт уже есть');
     setName('');
     setPhone('');
   };
@@ -62,10 +68,14 @@ const AddContacts = ({ onSubmit }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  contacts: selectors.getAllContacts(state),
+});
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: (name, number) => dispatch(operations.addContact(name, number)),
 });
-export default connect(null, mapDispatchToProps)(AddContacts);
+export default connect(mapStateToProps, mapDispatchToProps)(AddContacts);
 AddContacts.propTypes = {
   name: PropTypes.string,
   phone: PropTypes.string,
